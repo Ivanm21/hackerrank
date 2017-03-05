@@ -25,19 +25,12 @@ def alreadyHappy(b):
     if len(b) == 1:
         return True
     for x in set(b):
-        print(x*b.count(x))
-        print(b[b.index(x):b.index(x)])
-        print(b[b.index(x):b.index(x) + b.count(x)])        
         if x * b.count(x) != b[b.index(x):b.index(x) + b.count(x)]:
              return True
     return False
 
-b = "aassddwwweeeefшfff"
-print(alreadyHappy(b))
-
-'''Q = int(input().strip())
 for a0 in range(Q):
     n = int(input().strip())
     b = input().strip()
     print(analyse(n,b))
-'''
+
