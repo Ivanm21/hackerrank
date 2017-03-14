@@ -14,6 +14,18 @@ n,t = input().strip().split(' ')
 n,t = [int(n),int(t)]
 c = list(map(int, input().strip().split(' ')))
 
-print (n)
-print (t)
-print(c)
+time = 1
+count = 0
+capacity = n
+
+while time < t:
+    n = n - c[time-1]
+    if n < 0:
+        n = 0
+    if n < 5:
+        count += capacity - n
+        n = capacity
+    time += 1
+
+print(count)
+
