@@ -15,68 +15,46 @@ import itertools
 
 
 
-#n,k = input().strip().split(' ')
-#n,k = [int(n),int(k)]
+n,k = input().strip().split(' ')
+n,k = [int(n),int(k)]
 
-def subset(_index, set):
+def subset(_index, _set):
     sum = 0
     for i in _index:
         if i == _index[-1]:
-            newset = set[_index.index(i):]
+            _from = _set.index(i)
+            newset = _set[_from:]
         else:
-            newset = set[_index.index(i):_index.index(i)+1]
+            _from = _set.index(i)
+            positionInIndex = _index.index(i) + 1
+            _to = _set.index(_index[positionInIndex])
+            newset = _set[_from:_to]
 
         if len(newset) > 1:
             for x in newset:
-                sum += x[1]*(x[0] - newset[0][0])
+                sum += x[1]* (x[0] - newset[0][0])
     return sum
        
 
 
-n = 6
-k = 3
 
 poles = []
-costs = []
 
-# for a0 in range(n):
-#     x_i,w_i = input().strip().split(' ')
-#     x_i,w_i = [int(x_i),int(w_i)]
+ for a0 in range(n):
+     x_i,w_i = input().strip().split(' ')
+     x_i,w_i = [int(x_i),int(w_i)]
 
-#     poles.append((x_i,w_i))
+     poles.append((x_i,w_i))
 
-poles.append((10,15))
-poles.append((12,17))
-poles.append((16,18))
-poles.append((18,13))
-poles.append((30,10))
-poles.append((32,1))
-#firstPole = poles[0]
+
+firstPole = poles[0]
 sumarray =[]
-for comb in itertools.combinations(poles,k):
-    sumarray.append(subset(comb, poles))
-    print (comb)
-    print (subset(comb, poles))
+for indexes in itertools.combinations(poles,k):
+    if indexes[0] == firstPole:
+        sumarray.append(subset(indexes, poles))
 
-#print (min(sumarray, key=int))
+print (min(sumarray, key=int))
 
-    # if comb[0] == firstPole:
-    #     list = []
-    # else:
-    #     break
-    # for pol in comb:
-    #     list.append([pol])
-
-    # record = poles   
-    # for pol in comb:
-    #     combs = []
-    #     for _input in record:
-    #         if pol[0] == comb[-1][0]:
-    #             combs.append(_input)
-    #         elif  _input[0] >= pol[0] and _input[0] < comb[comb.index(pol)+1][0]:
-    #             combs.append([_input])
-    #         record.remove(_input) 
-    #     print (combs)
 
 
 
