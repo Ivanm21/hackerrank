@@ -1,7 +1,7 @@
 import sys
 
 n = 6
-k = 2
+k = 3
 
 poles = []
 
@@ -35,22 +35,28 @@ def subset(_index, _set):
 def combinations (A, k, start, currLen, used):
     sub = []
     if currLen == k:
+        subsub = []
         for i in A:
             if used[A.index(i)] == True:
-                print(i)
-        return sub
-    if start == len(A):
+                subsub.append(i)
         print()
+        return  subsub     
+
+    if start == len(A):
+        return sub
         
     used[start] = True
-    combinations(A,k,start +1,currLen +1,used)
+    sub.append(combinations(A,k,start+1 ,currLen +1,used))
 
-    used[start] = False
-    combinations(A,k,start+1,currLen,used)
+    if start != 0:
+        used[start] = False
+        sub.append(combinations(A,k,start +1,currLen,used))
+    
+    return sub
 
 used = [False]*len(poles)
 x = combinations(poles, k, 0,0,used)
-print(x)
+print (x)
 
 
 
